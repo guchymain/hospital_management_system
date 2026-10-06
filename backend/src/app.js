@@ -16,7 +16,17 @@ const appointmentRoutes = require("./routes/appointment.route")
 const medicalRecordRoutes = require("./routes/medicalRecord.route")
 const prescriptionRoutes = require("./routes/prescription.route")
 
-app.use(cors())
+const corsOrigin = process.env.CORS_ORIGIN
+const corsOptions = {
+  origin: corsOrigin && corsOrigin !== "*" ? corsOrigin.split(",").map((item) => item.trim()) : true,
+  methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization", "X-Requested-With"],
+  credentials: true,
+  optionsSuccessStatus: 200
+}
+
+app.use(cors(corsOptions))
+app.options("*", cors(corsOptions))
 app.use(logger)
 app.use(express.json({ limit: "10kb" }))
 
