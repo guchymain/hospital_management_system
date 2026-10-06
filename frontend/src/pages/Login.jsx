@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate, useLocation } from 'react-router-dom'
-import { LogIn, KeyRound } from 'lucide-react'
+import { LogIn, ShieldAlert } from 'lucide-react'
 import { useAuth } from '../context/AuthContext'
 import { Input } from '../components/Form/Input'
 import { Button } from '../components/Button/Button'
@@ -41,12 +41,6 @@ export const Login = () => {
     } finally {
       setLoading(false)
     }
-  }
-
-  const fillCredentials = (roleEmail, rolePassword) => {
-    setEmail(roleEmail)
-    setPassword(rolePassword)
-    setError('')
   }
 
   return (
@@ -97,49 +91,11 @@ export const Login = () => {
         </Button>
       </form>
 
-      {/* Demo Credentials Quick-Fill Section */}
-      <div className="mt-8 pt-6 border-t border-slate-100">
-        <div className="flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-slate-500 mb-3">
-          <KeyRound className="w-3.5 h-3.5 text-teal-600" />
-          <span>Demo Role Quick-Fill:</span>
-        </div>
-        <div className="grid grid-cols-2 gap-2 text-xs">
-          <button
-            type="button"
-            onClick={() => fillCredentials('admin@hospital.com', 'Admin@123')}
-            className="p-2 text-left bg-slate-50 hover:bg-slate-100 rounded-lg border border-slate-200 transition"
-          >
-            <span className="font-semibold text-slate-800 block">Admin</span>
-            <span className="text-slate-500 block truncate">admin@hospital.com</span>
-          </button>
-
-          <button
-            type="button"
-            onClick={() => fillCredentials('doctor.smith@hospital.com', 'Doctor@123')}
-            className="p-2 text-left bg-slate-50 hover:bg-slate-100 rounded-lg border border-slate-200 transition"
-          >
-            <span className="font-semibold text-slate-800 block">Doctor</span>
-            <span className="text-slate-500 block truncate">doctor.smith@hospital.com</span>
-          </button>
-
-          <button
-            type="button"
-            onClick={() => fillCredentials('nurse@hospital.com', 'Nurse@123')}
-            className="p-2 text-left bg-slate-50 hover:bg-slate-100 rounded-lg border border-slate-200 transition"
-          >
-            <span className="font-semibold text-slate-800 block">Nurse</span>
-            <span className="text-slate-500 block truncate">nurse@hospital.com</span>
-          </button>
-
-          <button
-            type="button"
-            onClick={() => fillCredentials('receptionist@hospital.com', 'Receptionist@123')}
-            className="p-2 text-left bg-slate-50 hover:bg-slate-100 rounded-lg border border-slate-200 transition"
-          >
-            <span className="font-semibold text-slate-800 block">Receptionist</span>
-            <span className="text-slate-500 block truncate">receptionist@hospital.com</span>
-          </button>
-        </div>
+      <div className="mt-8 pt-4 border-t border-slate-100 flex items-start gap-2.5 text-xs text-slate-500">
+        <ShieldAlert className="w-4 h-4 text-slate-400 shrink-0 mt-0.5" />
+        <p>
+          Hospital personnel accounts are provisioned exclusively by Hospital Administrators. Public self-registration is disabled for clinical data security and regulatory compliance.
+        </p>
       </div>
     </div>
   )
