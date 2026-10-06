@@ -20,7 +20,8 @@ if (config.use_env_variable) {
     dialect: config.dialect,
     logging: config.logging,
     schema: config.schema,
-    searchPath: config.searchPath
+    searchPath: config.searchPath,
+    dialectOptions: config.dialectOptions
   });
 }
 
